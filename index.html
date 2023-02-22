@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Minesweeper (Easy) (Old Version)</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
+</head>
+<body>
+  <div id="tipBox">
+    <div id="tipText">Click on minefield boxes to play!</div>
+    <table id="cheatTable">
+      <tr>
+        <td><button id="winner" class="cheat" onClick="winGame();revealAll();">Win Game!</button></td>
+        <td><button id="loser" class="cheat" onClick="loseGame();revealAll();">Lose Game!</button></td>
+      </tr>
+    </table>
+  </div>
+  <div id="minesweeper">
+    <div class="boardBox">
+      <div class="scoreKeeper">
+        <div class="mineRemainder"> 
+          <div class="digit_container left_digit"><img id="mine_digit_one" src="https://image.ibb.co/hx43vq/DIGITZERO.png" width="91%" height="91%"></div>
+          <div class="digit_container"><img id="mine_digit_two" src="https://image.ibb.co/hx43vq/DIGITZERO.png" width="91%" height="91%"></div>
+          <div class="digit_container"><img id="mine_digit_three"  src="https://image.ibb.co/hx43vq/DIGITZERO.png" width="91%" height="91%"></div>
+<!--            <img src="https://image.ibb.co/hx43vq/DIGITZERO.png">
+            <img src="https://image.ibb.co/hx43vq/DIGITZERO.png" alt=""> -->
+           <button id="smiley" onclick='resetSmile();resetGame();'></button>
+        </div>
+        <div class="timer">
+          <div class="digit_container left_digit"><img id="timer_digit_one" src="https://image.ibb.co/hx43vq/DIGITZERO.png" width="91%" height="91%"></div>
+          <div class="digit_container"><img id="timer_digit_two" src="https://image.ibb.co/hx43vq/DIGITZERO.png" width="91%" height="91%"></div>
+          <div class="digit_container"><img id="timer_digit_three"  src="https://image.ibb.co/hx43vq/DIGITZERO.png" width="91%" height="91%"></div></div>   
+      </div>
+      <table class="sweepBoard">
+        <tr>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td> 
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+        </tr>
+        <tr>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+        </tr>
+        <tr>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+        </tr>
+        <tr>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+        </tr>
+        <tr>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+        </tr>
+        <tr>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+        </tr>
+        <tr>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+        </tr>
+        <tr>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+        </tr>
+        <tr>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+          <td class="minefield"><button class="box"></button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
